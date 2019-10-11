@@ -4,11 +4,9 @@ import styled from "styled-components";
 
 const GridContainer = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     width: 100%;
-    margin-right: 10%;
-    margin-left: 10%;
 `;
 
 const CharacterGrid = props => {
@@ -16,7 +14,7 @@ const CharacterGrid = props => {
     let characters = props.parts
      
     return ( 
-    <GridContainer>
+    <GridContainer className="GridContainer">
         {characters.map((char, index) => {
             return <CharacterCard key={index} char1={char} />;
         })}

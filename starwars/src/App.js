@@ -14,8 +14,18 @@ const App = () => {
   // side effect in a component, you want to think about which state and/or props it should
   // sync up with, if any.
     
+  
   const StarHeader = styled.header`
-    width: 850px;
+    display: flex;
+    justify-content: center;
+    padding-top: 25px;  
+    height: 100px;
+    font-size: 3.5rem;
+    font-family: 'Josefin Sans', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: black;
+    text-shadow: 2px 2px 6px #FF0000;
   `;  
   
   useEffect(() => {
@@ -33,7 +43,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className="Header">React Wars</h1>
+      <StarHeader className="Header">React Wars</StarHeader>
       <CharacterGrid parts={parts}/>
     </div>
   );
