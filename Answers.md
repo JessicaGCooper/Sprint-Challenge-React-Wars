@@ -2,10 +2,20 @@
 
 1. What is React JS and what problems does it try and solve? Support your answer with concepts introduced in class and from your personal research on the web.
 
-1. What does it mean to think in react?
+React JS is a library (which is a set of precompiled routines that can be used when accessing the library) which was built specifically to manage complex state/DOM interactions/updates.  Managing complex state was a problem to solve because whenever state changed the entire DOM would be refreshed, if multiple DOM operations are occurring at the same time this caused the webpage to refresh (reload) more slowly, creating very poor performance.  React solves this problem by using a virtual DOM which allows a web page to be rendered without even having the page reload. When a page is rendered using React, the virtual DOM is stored, and when it is rendered again then the DOM is compared to the stored (old) DOM and only the portions of the DOM where changes occurred are refreshed.  React is component based and it’s through the component hierarchy and structure that React becomes even more effective at managing state and improving performance. Changes can occur only in one component of many components in the React “tree” and that component and any components it affects (such as child components) will be the areas refreshed.  
 
-1. Describe state.
+2. What does it mean to think in react?
 
-1. Describe props.
+Thinking in React means to think of your application or webpage as component based and as being in a tree like structure.  When you are planning an application you will plan it through thinking of each component your webpage/application will need, even down to the smallest components, such as buttons, and seeing them in a hierarchy.  For example the button could be a child of the component the button will be contained within and the information needed by the child components must be passed down through props from the parent component.  Like a family tree, an application may start with one main component, usually the App, and then branch out into many sections with children and grandchildren. 
 
-1. What are side effects, and how do you sync effects in a React component to state or prop changes?
+3. Describe state.
+
+State is static until something occurs to change the state, so there will be a current state, then there will be a function used to tell the current state when/how to change.  React’s useState method (hook) allows us to dynamically change state without refreshing the web page. In addition, the “useState” variable and the setUseState function can be passed down as props from a component in react to a child component and from there to a grandchild component. 
+
+4. Describe props.
+
+The main function in each component in React JS can accept the parameter of props, this is useful when there are child components and grandchild components, instead of extending classes, using super, and set up the constructor function inside a new class, child and grandchildren are created using the import and export functionality React provides a child will be exported, then in the parent, that child is imported, thus creating the relationship.  Through passing the props parameter into the child components function the child can have props passed down to them through variables defined in the parent component.
+
+5. What are side effects, and how do you sync effects in a React component to state or prop changes?
+
+Side effects are created by the useEffect hook in react and are most commonly used for console logs, requesting data from an API or scheduling timers.  These side effects occur after the the function (in a component) is rendered to the screen (or in other words every time the function is triggered), the function is triggered whenever there is change such as changes in state or variable data changing (as passed down through props) or when state changes (through the useState hook).  Every time the function runs the DOM is updated.  If we want an effect to occur only after react has a chance to finish updating the DOM we insert useEffect into our function to “schedule” it to occur after the DOM has been updated. If we only want the side effect to occur when a specific state or prop changes we use the second argument that useEffect takes - an array. If you input an empty array the effect will occur only after the first render.  If you want useEffect to be synced to a certain state or prop, you put that state or prop into the array.  You can put multiple states/props into the array as desired.  You can have multiple useEffects in your function.  Whatever state or prop is in the array will cause that side effect to occur only if there is a change in that specific state or prop.
